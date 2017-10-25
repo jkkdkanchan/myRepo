@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.devMode" value="false" />
+
+	<package name="default" extends="json-default">
+         
+         <action name="genAction" class="net.tebs.contact.view.MedicineInfo_Action" >
+			<result name="report" >/WEB-INF/modulePages/billgeneration.jsp</result>
+			<result name="list" >/WEB-INF/modulePages/medicine_list.jsp</result>
+			<result name="update" >/WEB-INF/modulePages/update_medicine.jsp</result>
+			<result name="explist" >/WEB-INF/modulePages/delete_medicines.jsp</result>
+			<result name="xxx" >/WEB-INF/modulePages/xxx.jsp</result>
+			<result name="storelist" >/WEB-INF/modulePages/store_details.jsp</result>
+			<result name="changePass" >/WEB-INF/modulePages/change_password.jsp</result>
+			<result name="index" >/index.jsp</result>
+		</action>
+		 <action name="curdAction" class="net.tebs.contact.view.MedicineInfo_Action">
+			<interceptor-ref name="tokenSession"></interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="update" >/WEB-INF/modulePages/update_medicine.jsp</result>
+			<result name="xxx" >/WEB-INF/modulePages/xxx.jsp</result>
+			<result name="store" >/WEB-INF/modulePages/store_details.jsp</result>
+			<result name="changePass" >/WEB-INF/modulePages/change_password.jsp</result>
+			<result name="invalid.token">/WEB-INF/modulePages/medicine_list.jsp</result> 
+		</action>
+		<action name="logoutAction" class="net.tebs.contact.view.MedicineInfo_Action">
+			<result name="index" >/index.jsp</result>
+		</action>
+		<action name="reportAction" class="net.tebs.contact.view.MedicineReport_Action">
+			<result name="billgen" >/WEB-INF/modulePages/billgeneration.jsp</result>
+			<result name="report" >/WEB-INF/modulePages/customers_report.jsp</result>
+			<result name="reportdetails" >/WEB-INF/modulePages/customer_report_details.jsp</result>
+			<result name="expRepo" >/WEB-INF/modulePages/delete_medicines.jsp</result>
+		</action>
+		<action name="reportActionE" class="net.tebs.contact.view.MedicineReport_Action">
+		    <interceptor-ref name="tokenSession"></interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="billgen" >/WEB-INF/modulePages/billgeneration.jsp</result>
+			<result name="invalid.token">/WEB-INF/modulePages/billgeneration.jsp</result>
+		</action>
+		<action name="printReport" class="net.tebs.contact.view.MedicineReport_Action">
+			<result  name="print" >/reportprint.jsp</result>
+		</action>
+        <action name="angularAction" class="net.tebs.contact.view.AngularAction">
+	       <result type="json" ></result>
+	   </action>
+	   
+	   <!-- new feature -->
+	    <action name="partyAction" class="net.tebs.contact.view.MedicineBill_Save">
+	       <interceptor-ref name="tokenSession"></interceptor-ref>
+		   <interceptor-ref name="defaultStack" />
+	       <result name="party" >/WEB-INF/modulePages/partybillsave.jsp</result>
+	       <result name="scheduleH1" >/WEB-INF/modulePages/scheduleH1.jsp</result>
+	       <result name="medRecord" >/WEB-INF/modulePages/medicine_record.jsp</result>
+	       <result name="partyRecord" >/WEB-INF/modulePages/party_record.jsp</result>
+	       
+	   </action>
+	   <action name="partycallAction" class="net.tebs.contact.view.MedicineBill_Save">
+	       <result name="party" >/WEB-INF/modulePages/partybillsave.jsp</result>
+	       <result name="scheduleH1" >/WEB-INF/modulePages/scheduleH1.jsp</result>
+	       <result name="medRecord" >/WEB-INF/modulePages/medicine_record.jsp</result>
+	       <result name="partyRecord" >/WEB-INF/modulePages/party_record.jsp</result>
+	   </action>
+	</package>
+</struts>

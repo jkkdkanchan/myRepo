@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <echo message="Creating folder for the lib..."/>
+  <mkdir dir="${report.folder}"/>
+  <echo message="Copying Twitter Bootstrap libraries to the ${report.folder}"/>
+  <copy todir="${report.folder}">
+    <fileset dir="src/main/resources">
+      <include name="**/**"/>
+    </fileset>
+  </copy>
+</target>
+</project>

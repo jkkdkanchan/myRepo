@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.devMode" value="false" />
+
+	<package name="default" extends="struts-default">
+
+		<action name="add"
+			class="net.tebs.contact.view.MedicineInfo_Action" method="add">
+			<param name="button">medicines</param>
+			<result name="success" >/modulePages/xxx.jsp</result>
+		</action>
+		<action name="login"
+			class="net.tebs.contact.view.MedicineInfo_Action" method="list">
+			<param name="button">mainButton</param>
+			<result name="success" >/modulePages/medicine_list.jsp</result>
+		    <result name="input">/modulePages/xxx.jsp</result>
+		</action>
+        <action name="list"
+			class="net.tebs.contact.view.MedicineInfo_Action" method="list">
+			<result name="success" >/modulePages/medicine_list.jsp</result>
+		</action>
+		<action name="insert"
+			class="net.tebs.contact.view.MedicineInfo_Action" method="list">
+			<result name="success" >/modulePages/xxx.jsp</result>
+		</action>
+		<action name="update"
+			class="net.tebs.contact.view.MedicineInfo_Action" method="list">
+			<result name="success" >/modulePages/update_medicine.jsp</result>
+		</action>
+		<action name="updatesave"
+			class="net.tebs.contact.view.MedicineInfo_Action" method="updateSave">
+			<param name="button">medicines</param>
+			<param name="formAccess">update</param>
+			<result name="success" >/modulePages/update_medicine.jsp</result>
+		</action>
+		<action name="delete"
+			class="net.tebs.contact.view.MedicineInfo_Action" method="delete">
+			<param name="button">medicines</param>
+			<param name="formAccess">delete</param>
+			<result name="success" >/modulePages/update_medicine.jsp</result>
+		</action>
+	</package>
+</struts>

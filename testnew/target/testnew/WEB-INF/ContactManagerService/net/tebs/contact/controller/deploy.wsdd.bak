@@ -1,0 +1,134 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ContactManagerService WSDL service -->
+
+  <service name="ContactManager" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://controller.contact.tebs.net"/>
+      <parameter name="wsdlServiceElement" value="ContactManagerService"/>
+      <parameter name="schemaQualified" value="http://model.contact.tebs.net,http://controller.contact.tebs.net"/>
+      <parameter name="wsdlServicePort" value="ContactManager"/>
+      <parameter name="className" value="net.tebs.contact.controller.ContactManagerSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ContactManager"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="add" qname="operNS:add" xmlns:operNS="http://controller.contact.tebs.net" returnQName="retNS:addReturn" xmlns:retNS="http://controller.contact.tebs.net" returnType="rtns:MedicineInfo" xmlns:rtns="http://model.contact.tebs.net" soapAction="" >
+        <parameter qname="pns:medicineInfo" xmlns:pns="http://controller.contact.tebs.net" type="tns:MedicineInfo" xmlns:tns="http://model.contact.tebs.net"/>
+      </operation>
+      <operation name="delete" qname="operNS:delete" xmlns:operNS="http://controller.contact.tebs.net" returnQName="retNS:deleteReturn" xmlns:retNS="http://controller.contact.tebs.net" returnType="rtns:MedicineInfo" xmlns:rtns="http://model.contact.tebs.net" soapAction="" >
+        <parameter qname="pns:medicineInfo" xmlns:pns="http://controller.contact.tebs.net" type="tns:MedicineInfo" xmlns:tns="http://model.contact.tebs.net"/>
+      </operation>
+      <operation name="list" qname="operNS:list" xmlns:operNS="http://controller.contact.tebs.net" returnQName="retNS:listReturn" xmlns:retNS="http://controller.contact.tebs.net" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://controller.contact.tebs.net" returnItemQName="tns:item" xmlns:tns="http://controller.contact.tebs.net" soapAction="" >
+      </operation>
+      <operation name="saveUpdate" qname="operNS:saveUpdate" xmlns:operNS="http://controller.contact.tebs.net" returnQName="retNS:saveUpdateReturn" xmlns:retNS="http://controller.contact.tebs.net" returnType="rtns:MedicineInfo" xmlns:rtns="http://model.contact.tebs.net" soapAction="" >
+        <parameter qname="pns:medicineInfo" xmlns:pns="http://controller.contact.tebs.net" type="tns:MedicineInfo" xmlns:tns="http://model.contact.tebs.net"/>
+      </operation>
+      <operation name="getSessionFactory" qname="operNS:getSessionFactory" xmlns:operNS="http://controller.contact.tebs.net" returnQName="retNS:getSessionFactoryReturn" xmlns:retNS="http://controller.contact.tebs.net" returnType="rtns:anyType" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="add saveUpdate list delete getSessionFactory"/>
+
+      <arrayMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>addResponse"
+        type="java:net.tebs.contact.controller.AddResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>delete"
+        type="java:net.tebs.contact.controller.Delete"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>list"
+        type="java:net.tebs.contact.controller.List"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model.contact.tebs.net"
+        qname="ns:MedicineInfo"
+        type="java:net.tebs.contact.model.MedicineInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>add"
+        type="java:net.tebs.contact.controller.Add"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>listResponse"
+        type="java:net.tebs.contact.controller.ListResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>saveUpdate"
+        type="java:net.tebs.contact.controller.SaveUpdate"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>getSessionFactoryResponse"
+        type="java:net.tebs.contact.controller.GetSessionFactoryResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>getSessionFactory"
+        type="java:net.tebs.contact.controller.GetSessionFactory"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>saveUpdateResponse"
+        type="java:net.tebs.contact.controller.SaveUpdateResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://controller.contact.tebs.net"
+        qname="ns:>deleteResponse"
+        type="java:net.tebs.contact.controller.DeleteResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

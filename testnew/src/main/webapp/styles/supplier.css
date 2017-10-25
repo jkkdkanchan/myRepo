@@ -1,0 +1,13 @@
+
+div.rootMenu {
+	background: #9838E5;
+}
+
+div#pagenav a.currentpage {
+	background-color: #9838E5;
+	border: 1px solid #9838E5;
+	}
+
+div.menu {
+	background-color: #9838E5;
+}
